@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projector Output</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* Output-specific overrides */
+    body, html { margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; background: #000; }
+    #content-layer { width: 100%; height: 100%; transform-origin: center center; transition: transform 0.1s linear; display: flex; align-items: center; justify-content: center; position: relative;}
+    #content-layer img { max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; }
+    #content-layer iframe { width: 100vw; height: 100vh; border: none; background: #fff; }
+    #fullscreen-btn { position: fixed; bottom: 10px; right: 10px; opacity: 0.1; transition: opacity 0.2s; z-index: 9999; }
+    #fullscreen-btn:hover { opacity: 1; }
+    .iframe-fallback { position: absolute; color: #666; font-family: sans-serif; z-index: -1; text-align: center;}
+  </style>
+</head>
+<body>
+  <div id="content-layer"></div>
+  <button id="fullscreen-btn">⛶</button>
+  <script type="module" src="/src/output.js"></script>
+</body>
+</html>

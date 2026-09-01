@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Control Room - Projector</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>History</h2>
+        <button id="btn-clear-history" class="danger small">Clear</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </aside>
+    
+    <main class="content">
+      <header>
+        <h1>Control Room</h1>
+        <button id="btn-add-output" class="primary">+ Add Output</button>
+      </header>
+      
+      <div id="outputs-grid" class="grid">
+        <!-- Output cards will be injected here -->
+      </div>
+    </main>
+  </div>
+  
+  <!-- Template for an Output Card -->
+  <template id="tpl-output-card">
+    <div class="card" data-id="">
+      <div class="card-header">
+        <h3 class="output-name">Output Name</h3>
+        <span class="status closed">● Closed</span>
+      </div>
+      
+      <div class="preview-container" title="Drag an image here to project">
+        <div class="preview-layer"></div>
+        <div class="preview-overlay">Drop Content Here</div>
+      </div>
+      
+      <div class="controls">
+        <div class="control-row">
+          <input type="url" class="url-input" placeholder="Paste URL here..." />
+          <button class="btn-send-url">Send</button>
+        </div>
+        <div class="control-row zoom-pan">
+          <label>Zoom: <input type="range" class="zoom-slider" min="0.1" max="5" step="0.1" value="1"></label>
+          <span class="hint">(Drag preview to pan)</span>
+        </div>
+        <div class="control-row actions">
+          <button class="btn-open">Open Window</button>
+          <button class="btn-blank">Blank Screen</button>
+          <button class="btn-close danger">Remove</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script type="module" src="/src/control.js"></script>
+</body>
+</html>
