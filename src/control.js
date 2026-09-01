@@ -107,9 +107,20 @@ function createOutputCard(id) {
 }
 
 function openOutputWindow(id) {
-  // Specifying a target name prevents duplicates.
-  window.open(`/output.html?id=${id}`, `projector_${id}`, 'width=800,height=600');
-  // Assume open until it pings back, UI updates on ping
+  console.log("Attempting to open window for:", id);
+  
+  // Try to open the window
+  const newWindow = window.open(`output.html?id=${id}`, `projector_${id}`, 'width=800,height=600');
+  
+  // Check if the browser or an extension silently killed it
+  if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+    console.error("FAILED: Window was blocked.");
+    alert("The window was blocked! Please disable your adblocker (like uBlock Origin) for this site, or try opening in an Incognito/Private window.");
+  } else {
+    console.log("SUCCESS: Window opened.");
+    // Force the window to jump to the front of your screen
+    newWindow.focus(); 
+  }
 }
 
 // Helper to move existing items to the top of the list
